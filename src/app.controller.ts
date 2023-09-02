@@ -1,4 +1,4 @@
-import { Body, Controller, Post, HttpException, HttpStatus, BadRequestException, UseGuards } from '@nestjs/common';
+import { Body, Controller, Post, HttpException, HttpStatus, BadRequestException, UseGuards, Get } from '@nestjs/common';
 import { SupabaseService } from './supabase/supabase.service';
 import { SupabaseGuard } from './supabase/supabase.guard';
 
@@ -6,6 +6,13 @@ import { SupabaseGuard } from './supabase/supabase.guard';
 export class AppController {
   constructor(private readonly supabaseService: SupabaseService) { }
 
+  @Get('')
+  async getHello() {
+    return {
+      msg: "success",
+      data: "Hello Niks"
+    }
+  }
   @Post('auth/signup')
   async signup(@Body() body: any) {
     try {
